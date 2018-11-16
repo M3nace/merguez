@@ -10,12 +10,17 @@ module.exports = async client => {
     // Clean
     const convert_chan = client.channels.find("name", "tables-de-conversion");
 
+    const msg_to_keep = ["512967657130295316",
+                         "512967675258077184",
+                         "512967864970641412",
+                         "512967888760602624"];
+
     var job = Cron.job("0 */15 * * * *", function() {
         convert_chan.fetchMessages()
             .then(messages => {
                 let deleted_msg = 0;
                 messages.forEach(msg => {
-                    if (msg.id != "498278896739811328" && msg.id != "498278925634502678") {
+                    if (msg_to_keep.indexOf(msg.id) == -1) {
                         msg.delete();
                         ++deleted_msg;
                     }

@@ -1,55 +1,56 @@
 class Item {
-    constructor(emoji, name, label, config) {
+    constructor(emoji, name, label, nb, config) {
 	this.emoji = emoji;
 	this.name = name;
 	this.label = label;
+        this.nb = nb;
 	this.config = config;
     }
 }
 
-const craft_points = new Item("craftpoints", null, "Points de craft", null);
-const golden_talent = new Item("goldentalent", null, "Cristaux d'or", null);
-const ruby = new Item("ruby", null, "Rubis", null);
-const refine_kit = new Item("refinekit", null, "Kit de craft", null);
-const silver_talent = new Item("silvertalent", null, "Cristaux d'argent", null);
+const craft_points = new Item("craftpoints", null, "Points de craft", 0, null);
+const golden_talent = new Item("goldentalent", null, "Cristaux d'or", 0, null);
+const ruby = new Item("ruby", null, "Rubis", 0, null);
+const refine_kit = new Item("refinekit", null, "Kit de craft", 0, null);
+const silver_talent = new Item("silvertalent", null, "Cristaux d'argent", 0, null);
 
-const sapphire = new Item("sapphire", "saphir", "Saphirs", [
+const sapphire = new Item("sapphire", "saphir", "Saphirs", 1, [
     { "item": craft_points, "number": 20 },
     { "item": refine_kit, "number": 20 },
     { "item": ruby, "number": 2 },
 ]);
 
-const emerald = new Item("emerald", "emeraude", "Emeraudes", [
+const emerald = new Item("emerald", "emeraude", "Emeraudes", 1, [
     { "item": craft_points, "number": 85 },
     { "item": refine_kit, "number": 100 },
     { "item": sapphire, "number": 5 }
 ]);
 
-const diamond = new Item("diamond", "diamant", "Diamants", [
+const diamond = new Item("diamond", "diamant", "Diamants", 1, [
     { "item": craft_points, "number": 500 },
     { "item": refine_kit, "number": 1000 },
     { "item": emerald, "number": 10 }
 ]);
 
-const golden_daric = new Item("goldendaric", "pieceor", "Pièces d'or", [
+const golden_daric = new Item("goldendaric", "pieceor", "Pièces d'or", 3, [
     { "item": craft_points, "number": 20 },
     { "item": refine_kit, "number": 60 },
     { "item": golden_talent, "number": 5 }
 ]);
 
-const golden_plate = new Item("goldenplate", "lingotor", "Lingots d'or", [
+const golden_plate = new Item("goldenplate", "lingotor", "Lingots d'or", 3, [
     { "item": craft_points, "number": 80 },
     { "item": refine_kit, "number": 240 },
     { "item": golden_daric, "number": 5 }
 ]);
 
-const silver_siglo = new Item("silversiglo", "pieceargent", "Pièces d'argent", [
+const silver_siglo = new Item("silversiglo", "pieceargent", "Pièces d'argent", 3, [
     { "item": craft_points, "number": 20 },
     { "item": refine_kit, "number": 60 },
     { "item": silver_talent, "number": 5 }
 ]);
 
-const silver_plate = new Item("silverplate", "lingotargent", "Lingots d'argent", [
+const silver_plate = new Item("silverplate", "lingotargent", "Lingots d'argent", 3, [
     { "item": craft_points, "number": 80 },
     { "item": refine_kit, "number": 240 },
     { "item": silver_siglo, "number": 5 }
@@ -83,7 +84,7 @@ function print_craft(client, nbitem, crafthis, iej) {
 	++loop;
 	iej = client.emojis.find("name", lop.emoji);
 	need += `\nCe qui implique de craft ${iej} ${lop.label} **x${nb}**. Il vous faut :\n\n`;
-	print_craft(client, nb, lop, iej);
+	print_craft(client, nb / lop.nb, lop, iej);
     } else if (tot_craft && tot_kit && loop >= 1) {
 	need += `\n\nCe qui fait un total de :\n\n`;
 
@@ -140,7 +141,7 @@ exports.run = async(client, message, nbitem, level) => {
 
             need += `Vous voulez crafter ${iej} ${crafthis.label} **x${nbitem}**. Il vous faut :\n\n`;
 
-            print_craft(client, nbitem, crafthis, iej);
+            print_craft(client, nbitem / crafthis.nb, crafthis, iej);
 
             need += "\nTape `!who` pour connaître la liste des personnes avec qui être gentil pour crafter ça";
 

@@ -4,7 +4,7 @@ exports.run = (client, message, args, level) => {
     const fp = client.emojis.find("name", "facepalm");
     const ye = client.emojis.find("name", "badass");
     const ne = client.emojis.find("name", "nope");
-    const roles = ["alchimiste", "aquafortiste", "forgeron armes", "forgeron armures"];
+    const roles = ["alchimiste", "aquafortiste", "forgeron armes", "forgeron armures", "maître queux"];
     const role = args.join(" ").toLowerCase();
 
     if (!args.length) {
@@ -38,6 +38,6 @@ exports.conf = {
 exports.help = {
     name: "metier",
     category: "Utilitaire",
-    description: "Assigne ou enleve un role a l'utilisateur. Ces roles sont en lien avec le craft de Tera : Alchimiste, Aquafortiste, Forgeron armes, Forgeron armures.",
+    description: "Assigne ou enleve un role a l'utilisateur. Ces roles sont en lien avec le craft de Tera : Alchimiste, Aquafortiste, Forgeron armes, Forgeron armures, Maître queux.",
     usage: "metier '[role]'"
 };

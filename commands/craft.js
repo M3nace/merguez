@@ -10,49 +10,49 @@ class Item {
 const craft_points = new Item("craftpoints", null, "Points de craft", null);
 const golden_talent = new Item("goldentalent", null, "Cristaux d'or", null);
 const ruby = new Item("ruby", null, "Rubis", null);
-const refine_kit = new Item("refinekit", null, "Kit de raffinage d'artisan", null);
+const refine_kit = new Item("refinekit", null, "Kit de craft", null);
 const silver_talent = new Item("silvertalent", null, "Cristaux d'argent", null);
 
 const sapphire = new Item("sapphire", "saphir", "Saphirs", [
-    { "item": craft_points, "number": 10 },
-    { "item": refine_kit, "number": 10 },
+    { "item": craft_points, "number": 20 },
+    { "item": refine_kit, "number": 20 },
     { "item": ruby, "number": 2 },
 ]);
 
 const emerald = new Item("emerald", "emeraude", "Emeraudes", [
-    { "item": craft_points, "number": 30 },
+    { "item": craft_points, "number": 85 },
     { "item": refine_kit, "number": 100 },
     { "item": sapphire, "number": 5 }
 ]);
 
 const diamond = new Item("diamond", "diamant", "Diamants", [
-    { "item": craft_points, "number": 300 },
+    { "item": craft_points, "number": 500 },
     { "item": refine_kit, "number": 1000 },
     { "item": emerald, "number": 10 }
 ]);
 
 const golden_daric = new Item("goldendaric", "pieceor", "Pièces d'or", [
-    { "item": craft_points, "number": 10 },
-    { "item": refine_kit, "number": 10 },
-    { "item": golden_talent, "number": 2 }
+    { "item": craft_points, "number": 20 },
+    { "item": refine_kit, "number": 60 },
+    { "item": golden_talent, "number": 5 }
 ]);
 
 const golden_plate = new Item("goldenplate", "lingotor", "Lingots d'or", [
-    { "item": craft_points, "number": 40 },
-    { "item": refine_kit, "number": 40 },
-    { "item": golden_daric, "number": 2 }
+    { "item": craft_points, "number": 80 },
+    { "item": refine_kit, "number": 240 },
+    { "item": golden_daric, "number": 5 }
 ]);
 
 const silver_siglo = new Item("silversiglo", "pieceargent", "Pièces d'argent", [
-    { "item": craft_points, "number": 10 },
-    { "item": refine_kit, "number": 10 },
-    { "item": silver_talent, "number": 2 }
+    { "item": craft_points, "number": 20 },
+    { "item": refine_kit, "number": 60 },
+    { "item": silver_talent, "number": 5 }
 ]);
 
 const silver_plate = new Item("silverplate", "lingotargent", "Lingots d'argent", [
-    { "item": craft_points, "number": 40 },
-    { "item": refine_kit, "number": 40 },
-    { "item": silver_siglo, "number": 2 }
+    { "item": craft_points, "number": 80 },
+    { "item": refine_kit, "number": 240 },
+    { "item": silver_siglo, "number": 5 }
 ]);
 
 const recipes = [silver_siglo, silver_plate, golden_daric, golden_plate, sapphire, emerald, diamond];

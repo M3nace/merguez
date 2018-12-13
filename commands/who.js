@@ -4,7 +4,7 @@ exports.run = (client, message, args, level) => {
     const pls = client.emojis.find("name", "pls");
     let ret = "voici les artisans déclarés :\n\n";
 
-    const roles = ["Alchimiste", "Aquafortiste", "Forgeron armes", "Forgeron armures"];
+    const roles = ["Alchimiste", "Aquafortiste", "Forgeron armes", "Forgeron armures", "Maître queux"];
     roles.forEach(role => {
         const members = message.guild.roles.find("name", role).members.map(m => m.user.username);
 

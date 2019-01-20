@@ -1,3 +1,9 @@
+# Personal
+config.js
+
+# Bot data
+data/*
+
 # Logs
 logs
 *.log

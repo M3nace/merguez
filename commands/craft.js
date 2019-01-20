@@ -141,7 +141,7 @@ exports.run = async(client, message, nbitem, level) => {
 
             need += `Vous voulez crafter ${iej} ${crafthis.label} **x${nbitem}**. Il vous faut :\n\n`;
 
-            print_craft(client, nbitem / crafthis.nb, crafthis, iej);
+            print_craft(client, Math.ceil(nbitem / crafthis.nb), crafthis, iej);
 
             need += "\nTape `!who` pour connaître la liste des personnes avec qui être gentil pour crafter ça";
 

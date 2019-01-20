@@ -84,7 +84,7 @@ function print_craft(client, nbitem, crafthis, iej) {
 	++loop;
 	iej = client.emojis.find("name", lop.emoji);
 	need += `\nCe qui implique de craft ${iej} ${lop.label} **x${nb}**. Il vous faut :\n\n`;
-	print_craft(client, nb / lop.nb, lop, iej);
+	print_craft(client, Math.ceil(nb / lop.nb), lop, iej);
     } else if (tot_craft && tot_kit && loop >= 1) {
 	need += `\n\nCe qui fait un total de :\n\n`;
 

@@ -1,0 +1,79 @@
+{
+    "recipes": [
+        { "name": "Points de craft", "emoji": "craftpoints" },
+        { "name": "Kit d'artisan", "emoji": "refinekit" },
+        { "name": "Rubis", "emoji": "ruby" },
+        { "name": "Cristaux d'or", "emoji": "goldentalent" },
+        { "name": "Cristaux d'argent", "emoji": "silvertalent" },
+        {
+            "name": "Saphirs",
+            "emoji": "sapphire",
+            "amount": 1,
+            "recipe": {
+                "craftpoints": 20,
+                "refinekit": 100,
+                "ruby": 2
+            }
+        },
+        {
+            "name": "Emeraudes",
+            "emoji": "emerald",
+            "amount": 1,
+            "recipe": {
+                "craftpoints": 85,
+                "refinekit": 20,
+                "sapphire": 5
+            }
+        },
+        {
+            "name": "Diamants",
+            "emoji": "diamond",
+            "amount": 1,
+            "recipe": {
+                "craftpoints": 500,
+                "refinekit": 1000,
+                "emerald": 10
+            }
+        },
+        {
+            "name": "Pièces d'or",
+            "emoji": "goldendaric",
+            "amount": 3,
+            "recipe": {
+                "craftpoints": 20,
+                "refinekit": 60,
+                "goldentalent": 5
+            }
+        },
+        {
+            "name": "Lingots d'or",
+            "emoji": "goldenplate",
+            "amount": 3,
+            "recipe": {
+                "craftpoints": 80,
+                "refinekit": 240,
+                "goldendaric": 5
+            }
+        },
+        {
+            "name": "Pièces d'argent",
+            "emoji": "silversiglo",
+            "amount": 3,
+            "recipe": {
+                "craftpoints": 20,
+                "refinekit": 60,
+                "silvertalent": 5
+            }
+        },
+        {
+            "name": "Lingots d'argent",
+            "emoji": "silverplate",
+            "amount": 3,
+            "recipe": {
+                "craftpoints": 80,
+                "refinekit": 240,
+                "silversiglo": 5
+            }
+        }
+    ]
+}

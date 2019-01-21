@@ -1,33 +1,33 @@
 const Cron = require('cron');
 
-module.exports = async client => {
-    // Log that the bot is online.
-    client.logger.log(`${client.user.tag}, ready to serve ${client.users.size} users in ${client.guilds.size} servers.`, "ready");
+module.exports = async (client) => {
+  // Log that the bot is online.
+  client.logger.log(`${client.user.tag}, ready to serve ${client.users.size} users in ${client.guilds.size} servers.`, 'ready');
 
-    // Make the bot "play the game" which is the help command with default prefix.
-    client.user.setActivity(`${client.config.defaultSettings.prefix}help`, {type: "PLAYING"});
+  // Make the bot 'play the game' which is the help command with default prefix.
+  client.user.setActivity(`${client.config.defaultSettings.prefix}help`, { type: 'PLAYING' });
 
-    // Clean
-    const convert_chan = client.channels.find("name", "tables-de-conversion");
+  // Init crafting module
+  client.crafting.init();
 
-    const msg_to_keep = ["512967657130295316",
-                         "512967675258077184",
-                         "512967864970641412",
-                         "512967888760602624"];
+  // Clean
+  const convertChan = client.channels.find(chan => chan.name === 'tables-de-conversion');
 
-    var job = Cron.job("0 */15 * * * *", function() {
-        convert_chan.fetchMessages()
-            .then(messages => {
-                let deleted_msg = 0;
-                messages.forEach(msg => {
-                    if (msg_to_keep.indexOf(msg.id) == -1) {
-                        msg.delete();
-                        ++deleted_msg;
-                    }
-                });
-                client.logger.log(`${messages.size} messages lu, ${deleted_msg} supprime`);
-            });
-    });
+  const msgToKeep = ['512967657130295316', '512967675258077184', '512967864970641412', '512967888760602624'];
 
-    job.start();
+  const job = Cron.job('0 */15 * * * *', () => {
+    convertChan.fetchMessages()
+      .then((messages) => {
+        let deletedMsg = 0;
+        messages.forEach((msg) => {
+          if (msgToKeep.indexOf(msg.id) === -1) {
+            msg.delete();
+            deletedMsg += 1;
+          }
+        });
+        client.logger.log(`${messages.size} messages lu, ${deletedMsg} supprime`);
+      });
+  });
+
+  job.start();
 };

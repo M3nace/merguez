@@ -13,7 +13,7 @@ module.exports = async (client) => {
   // Clean
   const convertChan = client.channels.find(chan => chan.name === 'tables-de-conversion');
 
-  const msgToKeep = ['512967657130295316', '512967675258077184', '512967864970641412', '512967888760602624'];
+  const msgToKeep = ['539393283995205632', '539393310750670849', '539393854147788800', '539393884346646528', '539393910787801088'];
 
   const job = Cron.job('0 */15 * * * *', () => {
     convertChan.fetchMessages()

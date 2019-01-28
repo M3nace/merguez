@@ -4,26 +4,26 @@ exports.run = (client, message, args) => {
   const fp = client.emojis.find(emoji => emoji.name === 'facepalm');
   const ye = client.emojis.find(emoji => emoji.name === 'badass');
   const ne = client.emojis.find(emoji => emoji.name === 'nope');
-  const roles = ['alchimiste', 'aquafortiste', 'forgeron armes', 'forgeron armures', 'maître queux'];
+  const roles = ['tank', 'heal', 'dd'];
   const role = args.join(' ').toLowerCase();
 
   if (!args.length) {
-    message.reply(`Les rôles possible sont : ${roles.join(', ')}\nIl suffit que tu tapes \`!metier [nom du role]\` pour te déclarer.`);
+    message.reply(`Les rôles possible sont : ${roles.join(', ')}\nIl suffit que tu tapes \`!role [nom du role]\` pour t'\assigner\retirer ce rôle.`);
     return;
   }
 
   if (!(roles.includes(role))) {
-    message.reply(`${fp}... je ne connais pas le metier de ${role}, par contre je connais : ${roles.join(', ')}`);
+    message.reply(`${fp}... je ne connais pas le role de ${role}, par contre je connais : ${roles.join(', ')}`);
     return;
   }
 
   const guildRole = message.member.guild.roles.find(rol => rol.name.toLowerCase() === role);
 
   if (!message.member.roles.find(rol => rol.name.toLowerCase() === role)) {
-    message.member.addRole(guildRole.id);
+    message.member.addRole(guildRole.id).catch(console.error);
     message.reply(`a maintenant le role de \`${role}\` ${ye}`);
   } else {
-    message.member.removeRole(guildRole.id);
+    message.member.removeRole(guildRole.id).catch(console.error);
     message.reply(`n'a plus le role de \`${role}\` ${ne}`);
   }
 };
@@ -31,13 +31,13 @@ exports.run = (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['metier'],
+  aliases: ['role'],
   permLevel: 'User',
 };
 
 exports.help = {
-  name: 'metier',
+  name: 'role',
   category: 'Utilitaire',
-  description: 'Assigne ou enleve un role a l\'utilisateur. Ces roles sont en lien avec le craft de Tera : Alchimiste, Aquafortiste, Forgeron armes, Forgeron armures, Maître queux.',
-  usage: 'metier [role]',
+  description: 'Assigne ou enleve un role a l\'utilisateur. Ces roles sont en lien avec les classes de Tera : Tank, Heal, ou DPS',
+  usage: 'role [role]',
 };

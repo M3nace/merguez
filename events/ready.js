@@ -11,15 +11,14 @@ module.exports = async (client) => {
   client.crafting.init();
 
   // Clean
-  const convertChan = client.channels.find(chan => chan.name === 'tables-de-conversion');
+  const cleanableChan = client.channels.filter(chan => chan.name === 'tables-de-conversion' || chan.name === 'recherche-de-groupe');
 
   const job = Cron.job('0 */15 * * * *', () => {
-    convertChan.fetchMessages()
-      .then((messages) => {
-        const deleteMessage = messages.filter(msg => !msg.pinned);
-        convertChan.bulkDelete(deleteMessage);
-        client.logger.log(`${messages.size} messages lu, ${deleteMessage.length} supprime`);
-      });
+    cleanableChan.map(chan => chan.fetchMessages().then((messages) => {
+      const deleteMessage = messages.filter(msg => !msg.pinned);
+      chan.bulkDelete(deleteMessage);
+      client.logger.log(`${chan.name}: ${messages.size} messages lu, ${deleteMessage.size} supprime`);
+    }));
   });
 
   job.start();

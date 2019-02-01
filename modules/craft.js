@@ -45,7 +45,7 @@ class CraftPrinter {
 
     const itemEmoji = this.client.emojis.find(emoji => emoji.name === item.emoji);
     this.prefix = `Vous voulez décomposer ${itemEmoji} **x${amount}**. Vous pouvez faire :\n\n`;
-    this.sufix = '\n\nTape `!craft [nb]` pour connaître la liste des ressources nécessaires.';
+    this.sufix = `\n\nTape \`!craft [nb] [item emoji]\` pour connaître la liste des ressources nécessaires.`;
     this.content = '';
 
     this.decomposeLoop(item, amount);

@@ -1,6 +1,4 @@
 exports.run = (client, message, args) => {
-  message.delete(300000);
-
   const fp = client.emojis.find(emoji => emoji.name === 'facepalm');
   const ye = client.emojis.find(emoji => emoji.name === 'badass');
   const ne = client.emojis.find(emoji => emoji.name === 'nope');
@@ -8,7 +6,7 @@ exports.run = (client, message, args) => {
   const role = args.join(' ').toLowerCase();
 
   if (!args.length) {
-    message.reply(`Les rôles possible sont : ${roles.join(', ')}\nIl suffit que tu tapes \`!role [nom du role]\` pour t'\assigner\retirer ce rôle.`);
+    message.reply(`Les rôles possible sont : ${roles.join(', ')}\nIl suffit que tu tapes \`!role [nom du role]\` pour t'assigner/retirer ce rôle.`);
     return;
   }
 
@@ -20,10 +18,10 @@ exports.run = (client, message, args) => {
   const guildRole = message.member.guild.roles.find(rol => rol.name.toLowerCase() === role);
 
   if (!message.member.roles.find(rol => rol.name.toLowerCase() === role)) {
-    message.member.addRole(guildRole.id).catch(console.error);
+    message.member.addRole(guildRole.id);
     message.reply(`a maintenant le role de \`${role}\` ${ye}`);
   } else {
-    message.member.removeRole(guildRole.id).catch(console.error);
+    message.member.removeRole(guildRole.id);
     message.reply(`n'a plus le role de \`${role}\` ${ne}`);
   }
 };

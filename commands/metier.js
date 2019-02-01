@@ -1,6 +1,4 @@
 exports.run = (client, message, args) => {
-  message.delete(300000);
-
   const fp = client.emojis.find(emoji => emoji.name === 'facepalm');
   const ye = client.emojis.find(emoji => emoji.name === 'badass');
   const ne = client.emojis.find(emoji => emoji.name === 'nope');

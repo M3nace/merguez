@@ -1,11 +1,8 @@
 exports.run = async (client, message, [nbitem, item]) => {
-  // Auto delete message
-  message.delete(300000);
-
   // Checks
   const fp = client.emojis.find(emoji => emoji.name === 'facepalm');
 
-  if (!nbitem.length && !item.length) {
+  if ((nbitem === undefined || item === undefined) || (!nbitem.length && !item.length)) {
     message.reply(`Je ne sais pas ce que tu veux décomposer ni en quelle quantité ${fp} - Tape \`!decompose [nombre] [item emoji]\``);
     return;
   }
@@ -23,7 +20,7 @@ exports.run = async (client, message, [nbitem, item]) => {
   }
 
   client.crafting.decompose(itemName, nbitem);
-  message.channel.send(client.crafting.msg).then((msg) => { msg.delete(300000); });
+  message.channel.send(client.crafting.msg);
 };
 
 exports.conf = {

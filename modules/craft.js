@@ -60,7 +60,7 @@ class CraftPrinter {
     const createToEmoji = this.client.emojis.find(emoji => emoji.name === createTo.emoji);
 
     const nb = Math.floor((amount / createTo.recipe[item.emoji]) * createTo.amount);
-    this.content += `${createToEmoji} ${createTo.name} **x${nb}**.\n`;
+    this.content += `${createToEmoji} ${createTo.name} **x ${nb.toLocaleString()}**.\n`;
     this.decomposeLoop(createTo, nb);
   }
 
@@ -70,7 +70,7 @@ class CraftPrinter {
     if (item === undefined) return;
 
     const itemEmoji = this.client.emojis.find(emoji => emoji.name === item.emoji);
-    this.prefix = `Vous voulez crafter ${itemEmoji} ${item.name} **x${amount}**. Il vous faut : \n\n`;
+    this.prefix = `Vous voulez crafter ${itemEmoji} ${item.name} **x ${amount}**. Il vous faut : \n\n`;
     this.sufix = '\n\nTape `!who` pour connaître la liste des personnes avec qui être gentil pour crafter ça.';
     this.content = '';
 
@@ -85,29 +85,29 @@ class CraftPrinter {
       const subemoji = this.client.emojis.find(emoji => emoji.name === subitem.emoji);
       const subitemamount = subvalue * amount;
 
-      this.content += `${subemoji} ${subitem.name} **x${subitemamount}**\n`;
+      this.content += `${subemoji} ${subitem.name} **x ${subitemamount.toLocaleString()}**\n`;
 
       if (subitem.emoji === 'craftpoints') {
         this.total_craft_point += subitemamount;
         this.emojis.craft = this.client.emojis.find(emoji => emoji.name === 'craftpoints');
       } else if (subitem.emoji === 'refinekit') {
         const po = subitemamount * 1.07;
-        this.content += `${this.emojis.po} PO **x${Number(po).toFixed(2)}**\n`;
+        this.content += `${this.emojis.po} PO **x ${Number(po).toLocaleString(undefined, { minimumFractionDigits: 2 })}**\n`;
         this.total_kit += subitemamount;
         this.total_po += po;
         this.emojis.kit = this.client.emojis.find(emoji => emoji.name === 'refinekit');
       } else if (Object.keys(subitem.recipe).length) {
-        this.content += `\nCe qui implique de craft ${subemoji} ${subitem.name} **x${subitemamount}**. Il vous faut :\n\n`;
+        this.content += `\nCe qui implique de craft ${subemoji} ${subitem.name} **x ${subitemamount.toLocaleString()}**. Il vous faut :\n\n`;
         this.is_subrecipe = true;
         this.craftLoop(subitem.recipe, Math.ceil(subitemamount / subitem.amount));
       } else if (this.is_subrecipe) {
         this.content += `
 Ce qui fait un total de :
 
-${this.emojis.craft} Points de craft **x${this.total_craft_point}**
-${this.emojis.kit} Kit d'artisan **x${this.total_kit}**
-${this.emojis.po} PO **x${Number(this.total_po).toFixed(2)}**
-${this.emojis.elinu} Larme d'Elinu **x${Math.round(this.total_craft_point / 4000)}**`;
+${this.emojis.craft} Points de craft **x ${this.total_craft_point.toLocaleString()}**
+${this.emojis.kit} Kit d'artisan **x ${this.total_kit.toLocaleString()}**
+${this.emojis.po} PO **x ${Number(this.total_po).toLocaleString(undefined, { minimumFractionDigits: 2 })}**
+${this.emojis.elinu} Larme d'Elinu **x ${Math.round(this.total_craft_point / 4000)}**`;
       }
     });
   }

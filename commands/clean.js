@@ -1,7 +1,8 @@
 exports.run = (client, message, args) => {
   message.channel.fetchMessages()
     .then((messages) => {
-      message.channel.bulkDelete(messages);
+      const deleteMessage = messages.filter(msg => !msg.pinned);
+      message.channel.bulkDelete(deleteMessage);
     });
 };
 

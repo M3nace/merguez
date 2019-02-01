@@ -13,19 +13,12 @@ module.exports = async (client) => {
   // Clean
   const convertChan = client.channels.find(chan => chan.name === 'tables-de-conversion');
 
-  const msgToKeep = ['539393283995205632', '539393310750670849', '539393854147788800', '539393884346646528', '539393910787801088'];
-
   const job = Cron.job('0 */15 * * * *', () => {
     convertChan.fetchMessages()
       .then((messages) => {
-        let deletedMsg = 0;
-        messages.forEach((msg) => {
-          if (msgToKeep.indexOf(msg.id) === -1) {
-            msg.delete();
-            deletedMsg += 1;
-          }
-        });
-        client.logger.log(`${messages.size} messages lu, ${deletedMsg} supprime`);
+        const deleteMessage = messages.filter(msg => !msg.pinned);
+        convertChan.bulkDelete(deleteMessage);
+        client.logger.log(`${messages.size} messages lu, ${deleteMessage.length} supprime`);
       });
   });
 

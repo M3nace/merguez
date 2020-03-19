@@ -11,6 +11,10 @@ const config = {
   // Your Bot's Token. Available on https://discordapp.com/developers/applications/me
   token: '',
 
+  // Twitch configuration & secrets
+  twitch_client_id: '',
+  twitch_client_secret: '',
+
   // Default per-server settings. New guilds have these settings.
 
   // DO NOT LEAVE ANY OF THESE BLANK, AS YOU WILL NOT BE ABLE TO UPDATE THEM

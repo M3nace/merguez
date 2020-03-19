@@ -10,16 +10,8 @@ module.exports = async (client) => {
   // Init crafting module
   client.crafting.init();
 
-  // Clean
-  const cleanableChan = client.channels.filter(chan => chan.name === 'tables-de-conversion' || chan.name === 'recherche-de-groupe');
-
-  const job = Cron.job('0 */15 * * * *', () => {
-    cleanableChan.map(chan => chan.fetchMessages().then((messages) => {
-      const deleteMessage = messages.filter(msg => !msg.pinned);
-      chan.bulkDelete(deleteMessage);
-      client.logger.log(`${chan.name}: ${messages.size} messages lu, ${deleteMessage.size} supprime`);
-    }));
-  });
-
-  job.start();
+  // Load specials modules
+  require("../modules/cron.js")(client);
+  require("../modules/subscribe.js")(client);
+  require("../modules/twitch.js")(client);
 };

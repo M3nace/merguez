@@ -1,4 +1,5 @@
 # Merguez [![Build Status](https://travis-ci.org/M3nace/Merguez.svg?branch=master)](https://travis-ci.org/M3nace/Merguez)
-Bot discord pour l'aide au craft de TERA
+
+Bot discord pour l'aide au craft de TERA et streaming
 
 Squelette du bot disponible sur https://github.com/AnIdiotsGuide/guidebot

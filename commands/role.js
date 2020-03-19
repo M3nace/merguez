@@ -27,7 +27,7 @@ exports.run = (client, message, args) => {
 };
 
 exports.conf = {
-  enabled: true,
+  enabled: false,
   guildOnly: false,
   aliases: ['role'],
   permLevel: 'User',

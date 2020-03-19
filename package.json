@@ -1,7 +1,7 @@
 {
     "name": "Merguez",
-    "version": "1.0.0",
-    "description": "Aide au craft sur TERA",
+    "version": "2.0.0",
+    "description": "Bot discord à la plage",
     "main": "index.js",
     "scripts": {
         "start": "node index.js"
@@ -12,20 +12,15 @@
     "author": "M3nace",
     "license": "MIT",
     "dependencies": {
-        "@discordjs/uws": "^11.149.1",
-        "better-sqlite-pool": "github:eslachance/better-sqlite-pool",
-        "bufferutil": "^4.0.1",
+        "better-sqlite3": "^5.4.0",
         "chalk": "^2.4.2",
-        "cron": "^1.7.1",
+        "cron": "^1.8.2",
         "discord.js": "^11.5.1",
-        "enmap": "^4.8.7",
-        "erlpack": "github:discordapp/erlpack",
-        "libsodium-wrappers": "^0.7.5",
+        "enmap": "^5.0.0",
+        "inquirer": "^6.3.1",
         "moment": "^2.24.0",
         "moment-duration-format": "^2.3.2",
-        "node-opus": "^0.3.2",
-        "opusscript": "0.0.7",
-        "sodium": "^3.0.2",
-        "uws": "^100.0.1"
+        "twitch": "^4.0.7",
+        "twitch-webhooks": "^4.0.7"
     }
 }
